@@ -34,7 +34,7 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-[60] border-b border-slate-200 bg-white/95 backdrop-blur">
       {/* Barra superior */}
       <div className="bg-[#6b1135] text-white">
         <div className="container-page flex items-center justify-between py-2 text-xs">
@@ -97,12 +97,12 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* MOBILE OVERLAY + DRAWER */}
+      {/* MOBILE OVERLAY + DRAWER (superior a TODO) */}
       {open && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Overlay */}
+        <div className="fixed inset-0 z-[9999] lg:hidden">
+          {/* Overlay sólido para que NO se vea el hero “atravesado” */}
           <button
-            className="absolute inset-0 bg-black/40"
+            className="absolute inset-0 bg-black/60"
             aria-label="Cerrar menú"
             onClick={() => setOpen(false)}
           />
