@@ -1,65 +1,136 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const quickLinks = [
+  { title: "Gobierno", desc: "Cabildo, dependencias y directorio.", href: "/gobierno" },
+  { title: "Municipio", desc: "Historia, ubicación y comunidades.", href: "/municipio" },
+  { title: "Noticias", desc: "Comunicados y avisos oficiales.", href: "/noticias" },
+  { title: "Transparencia", desc: "Acceso a información pública.", href: "/transparencia" },
+];
+
+const services = [
+  { title: "Atención ciudadana", desc: "Orientación y canalización.", href: "/contacto" },
+  { title: "Avisos y comunicados", desc: "Información oficial al día.", href: "/noticias" },
+  { title: "Transparencia", desc: "Obligaciones y documentos.", href: "/transparencia" },
+  { title: "Directorio", desc: "Áreas y responsables.", href: "/gobierno" },
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div>
+      {/* HERO */}
+      <section className="hero">
+        <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+          <p className="text-xs font-semibold tracking-widest uppercase text-white/80">
+            Sitio oficial
           </p>
+
+          <h1 className="mt-3 text-4xl font-extrabold tracking-tight md:text-5xl">
+            Ayuntamiento de Jamapa, Veracruz
+          </h1>
+
+          <p className="mt-4 max-w-2xl text-base text-white/90 md:text-lg">
+            Gobierno municipal comprometido con el desarrollo, la transparencia y el bienestar
+            de la ciudadanía.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/contacto" className="btn-secondary">
+              Contacto
+            </Link>
+            <Link
+              href="/noticias"
+              className="inline-flex items-center justify-center rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+            >
+              Ver noticias
+            </Link>
+          </div>
+
+          {/* Banner de avisos (pro) */}
+          <div className="mt-10 rounded-2xl border border-white/25 bg-white/10 p-5">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-sm font-semibold text-white">Aviso destacado</p>
+                <p className="mt-1 text-sm text-white/90">
+                  Este espacio se usa para comunicados urgentes (cortes, campañas, horarios, etc.).
+                </p>
+              </div>
+              <Link
+                href="/noticias"
+                className="inline-flex w-fit items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-white/90"
+              >
+                Ir a avisos →
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* SERVICIOS */}
+      <section className="mx-auto max-w-6xl px-4 py-12">
+        <div className="flex items-start justify-between gap-6">
+          <div>
+            <h2 className="text-2xl font-bold">Servicios e información</h2>
+            <p className="mt-2 text-slate-600">
+              Accesos rápidos. Fase 1 (informativa), listo para crecer.
+            </p>
+          </div>
+          <span className="hidden badge md:inline">Fase 1</span>
         </div>
-      </main>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((s) => (
+            <Link key={s.title} href={s.href} className="card group">
+              <div className="flex items-center justify-between">
+                <p className="text-lg font-bold">{s.title}</p>
+                <span className="text-slate-400 transition group-hover:text-slate-700">→</span>
+              </div>
+              <p className="mt-2 text-sm text-slate-600">{s.desc}</p>
+              <p className="mt-4 text-sm font-semibold text-[var(--jamapa-teal)]">
+                Ver más
+              </p>
+            </Link>
+          ))}
+        </div>
+
+        <div className="divider" />
+
+        {/* Evento destacado */}
+        <div className="grid gap-4 md:grid-cols-3">
+          <div className="card md:col-span-2">
+            <p className="badge">Evento destacado</p>
+            <h3 className="mt-3 text-xl font-bold">Actividades comunitarias</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Aquí irá el evento principal de la semana (fecha, sede y detalles).
+              En fase 2 lo alimentamos desde un panel o BD.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/noticias" className="btn-primary">
+                Ver detalles →
+              </Link>
+              <Link href="/contacto" className="btn-secondary">
+                Preguntar en contacto
+              </Link>
+            </div>
+          </div>
+
+          {/* Accesos rápidos institucionales */}
+          <div className="card">
+            <p className="text-sm font-semibold text-slate-900">Accesos rápidos</p>
+            <div className="mt-4 grid gap-2">
+              {quickLinks.map((q) => (
+                <Link
+                  key={q.href}
+                  href={q.href}
+                  className="rounded-xl border bg-white px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                >
+                  {q.title}
+                  <p className="mt-1 text-xs font-normal text-slate-500">{q.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
