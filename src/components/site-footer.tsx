@@ -1,61 +1,35 @@
-import Link from "next/link";
-
 export function SiteFooter() {
   return (
-    <footer className="border-t bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-10">
-        <div className="grid gap-8 md:grid-cols-3">
-          <div>
-            <p className="text-base font-semibold text-slate-900">
-              Ayuntamiento de Jamapa
-            </p>
-            <p className="mt-2 text-sm text-slate-600">
-              Sitio informativo institucional. Fase 1 (informativa).
-            </p>
-            <p className="mt-4 text-xs text-slate-500">
-              © {new Date().getFullYear()} Jamapa, Veracruz
-            </p>
-          </div>
-
-          <div>
-            <p className="text-sm font-semibold text-slate-900">Enlaces</p>
-            <ul className="mt-3 grid gap-2 text-sm">
-              <li>
-                <Link className="text-slate-600 hover:text-slate-900" href="/gobierno">
-                  Gobierno
-                </Link>
-              </li>
-              <li>
-                <Link className="text-slate-600 hover:text-slate-900" href="/municipio">
-                  Municipio
-                </Link>
-              </li>
-              <li>
-                <Link className="text-slate-600 hover:text-slate-900" href="/noticias">
-                  Noticias
-                </Link>
-              </li>
-              <li>
-                <Link className="text-slate-600 hover:text-slate-900" href="/transparencia">
-                  Transparencia
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div id="atencion">
-            <p className="text-sm font-semibold text-slate-900">Contacto</p>
-            <p className="mt-3 text-sm text-slate-600">
-              Aquí colocaremos teléfono, correo, dirección y horarios oficiales.
-            </p>
-            <p className="mt-3 text-sm text-slate-600">
-              Mientras tanto:{" "}
-              <Link href="/contacto" className="font-medium text-[var(--jamapa-teal)] hover:underline">
-                Ir a Contacto
-              </Link>
-            </p>
-          </div>
+    <footer className="mt-16 border-t border-slate-200 bg-slate-50">
+      <div className="container-page grid gap-8 py-10 md:grid-cols-3">
+        <div>
+          <p className="text-sm font-extrabold">Ayuntamiento de Jamapa</p>
+          <p className="mt-2 text-sm text-slate-600">
+            Sitio informativo oficial. Transparencia, servicios y atención ciudadana.
+          </p>
         </div>
+
+        <div>
+          <p className="text-sm font-bold">Enlaces</p>
+          <ul className="mt-3 space-y-2 text-sm text-slate-600">
+            <li>Gobierno</li>
+            <li>Municipio</li>
+            <li>Transparencia</li>
+            <li>Contacto</li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-sm font-bold">Contacto</p>
+          <p className="mt-3 text-sm text-slate-600">
+            Cuartel 2, Jamapa, Veracruz
+          </p>
+          <p className="mt-1 text-sm text-slate-600">Horario: Lun–Vie 10:00–17:30</p>
+        </div>
+      </div>
+
+      <div className="border-t border-slate-200 py-4 text-center text-xs text-slate-500">
+        © {new Date().getFullYear()} Ayuntamiento de Jamapa, Veracruz. Todos los derechos reservados.
       </div>
     </footer>
   );
