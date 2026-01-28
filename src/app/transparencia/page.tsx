@@ -1,18 +1,37 @@
 export default function TransparenciaPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
-      <h1 className="text-3xl font-extrabold">Transparencia</h1>
-      <p className="mt-3 text-slate-600">
-        Acceso a información pública y obligaciones de transparencia.
+    <div className="container-page py-12">
+      <h1 className="section-title">Transparencia</h1>
+      <p className="section-subtitle">
+        Acceso a la información pública del Ayuntamiento de Jamapa.
       </p>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-2">
-        {["Obligaciones", "Presupuesto", "Contrataciones", "Normatividad"].map((x) => (
-          <div key={x} className="rounded-2xl border bg-white p-6 shadow-sm">
-            <p className="text-lg font-bold">{x}</p>
-            <p className="mt-2 text-sm text-slate-600">Sección informativa (Fase 1).</p>
-          </div>
-        ))}
+      <div className="mt-10 space-y-6">
+        <section className="card">
+          <h2 className="card-title">Compromiso con la transparencia</h2>
+          <p className="card-text">
+            El Ayuntamiento de Jamapa refrenda su compromiso con la rendición de
+            cuentas y el acceso a la información pública conforme a la ley.
+          </p>
+        </section>
+
+        <section className="card">
+          <h2 className="card-title">Información disponible</h2>
+          <ul className="mt-2 list-disc pl-5 text-sm text-slate-600">
+            <li>Marco normativo (próximamente)</li>
+            <li>Presupuesto y ejercicio del gasto</li>
+            <li>Directorios</li>
+            <li>Informes</li>
+          </ul>
+        </section>
+
+        <section className="card">
+          <h2 className="card-title">Nota</h2>
+          <p className="card-text">
+            Esta sección se encuentra en proceso de actualización para cumplir
+            con las obligaciones de transparencia.
+          </p>
+        </section>
       </div>
     </div>
   );

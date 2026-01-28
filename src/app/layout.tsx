@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   description:
     "Sitio informativo del Ayuntamiento de Jamapa, Veracruz. Juntos por la Transformación.",
 };
+<div className="bg-amber-50 border-b border-amber-200">
+  <div className="container-page py-2 text-sm text-amber-900">
+    Este sitio se encuentra en proceso de actualización.
+  </div>
+</div>
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
