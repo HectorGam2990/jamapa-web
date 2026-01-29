@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
-const nav = [
+const NAV = [
   { href: "/", label: "Inicio" },
   { href: "/gobierno", label: "Gobierno" },
   { href: "/municipio", label: "Municipio" },
@@ -12,104 +14,179 @@ const nav = [
   { href: "/contacto", label: "Contacto" },
 ];
 
-export function SiteHeader() {
-  const [open, setOpen] = useState(false);
+function NavLink({
+  href,
+  label,
+  onClick,
+  active,
+}: {
+  href: string;
+  label: string;
+  onClick?: () => void;
+  active?: boolean;
+}) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className={[
+        "rounded-xl px-3 py-2 text-sm font-medium transition",
+        active
+          ? "bg-slate-900 text-white"
+          : "text-slate-700 hover:bg-slate-100 hover:text-slate-900",
+      ].join(" ")}
+    >
+      {label}
+    </Link>
+  );
+}
 
+export default function SiteHeader() {
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Cierra el menú al cambiar de ruta
   useEffect(() => {
-    // Bloquea scroll cuando el menú está abierto
-    document.body.style.overflow = open ? "hidden" : "";
+    setOpen(false);
+  }, [pathname]);
+
+  // Bloquea el scroll del body cuando el menú está abierto
+  useEffect(() => {
+    if (!open) {
+      document.body.style.overflow = "";
+      return;
+    }
+    document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
 
   return (
-    <header className="fixed top-0 inset-x-0 z-[100] bg-white/95 backdrop-blur border-b border-slate-200">
-      {/* Barrita arriba (vino) */}
-      <div className="bg-[#6B1028] text-white text-xs">
-        <div className="mx-auto max-w-6xl px-4 py-2 flex items-center justify-between">
-          <span>Sitio oficial</span>
-          <span className="hidden sm:inline">Atención ciudadana</span>
-        </div>
-      </div>
-
-      <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between gap-3">
-        {/* Marca / Logo */}
-        <Link href="/" className="flex items-center gap-3 min-w-0">
-          {/* Si ya tienes el logo como JPG, cámbialo aquí: /logo-jamapa.jpg */}
-          <img
-            src="/logo-jamapa.jpg"
-            alt="Ayuntamiento de Jamapa"
-            className="h-9 w-auto"
-          />
-          <div className="leading-tight min-w-0">
-            <div className="font-semibold text-slate-900 truncate">
-              Ayuntamiento de Jamapa
-            </div>
-            <div className="text-xs text-slate-500">Veracruz</div>
+    <>
+      {/* Barra superior vino */}
+      <div className="fixed inset-x-0 top-0 z-[60] h-16">
+        <div className="h-4 bg-[#5b0f2e] text-white">
+          <div className="mx-auto flex h-4 max-w-6xl items-center justify-between px-4 text-[10px] tracking-wide">
+            <span>Sitio oficial</span>
+            <span className="hidden sm:inline">Juntos por la Transformación</span>
+            <span>Atención ciudadana</span>
           </div>
-        </Link>
+        </div>
 
-        {/* Nav escritorio */}
-        <nav className="hidden md:flex items-center gap-2">
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-100"
-            >
-              {item.label}
+        {/* Header blanco */}
+        <header className="border-b border-slate-200 bg-white/95 backdrop-blur">
+          <div className="mx-auto flex h-12 max-w-6xl items-center justify-between px-4">
+            {/* Brand */}
+            <Link href="/" className="flex items-center gap-3">
+              <div className="relative h-9 w-16 overflow-hidden">
+                <Image
+                  src="/logo-jamapa.jpg"
+                  alt="Logo Jamapa"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              <div className="leading-tight">
+                <div className="text-sm font-extrabold text-slate-900">
+                  Ayuntamiento de Jamapa
+                </div>
+                <div className="text-xs text-slate-600">Veracruz</div>
+              </div>
             </Link>
-          ))}
-        </nav>
 
-        {/* Botón menú móvil */}
-        <button
-          className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-xl border border-slate-200 hover:bg-slate-50"
-          onClick={() => setOpen(true)}
-          aria-label="Abrir menú"
-        >
-          ☰
-        </button>
+            {/* Desktop nav */}
+            <nav className="hidden items-center gap-1 md:flex">
+              {NAV.map((item) => (
+                <NavLink
+                  key={item.href}
+                  href={item.href}
+                  label={item.label}
+                  active={pathname === item.href}
+                />
+              ))}
+            </nav>
+
+            {/* Mobile button */}
+            <button
+              type="button"
+              className="md:hidden inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
+              onClick={() => setOpen(true)}
+              aria-label="Abrir menú"
+            >
+              ☰
+            </button>
+          </div>
+        </header>
       </div>
 
-      {/* Overlay + panel móvil */}
+      {/* Overlay + Drawer móvil (SUPER por encima, NO transparente feo) */}
       {open && (
-        <div className="md:hidden fixed inset-0 z-[110]">
-          {/* Overlay oscuro (esto evita el “transparente” sobre el hero) */}
-          <div
-            className="absolute inset-0 bg-black/50"
+        <div className="fixed inset-0 z-[80]">
+          {/* Fondo oscuro */}
+          <button
+            aria-label="Cerrar menú"
+            className="absolute inset-0 bg-black/55"
             onClick={() => setOpen(false)}
+            type="button"
           />
 
           {/* Panel */}
-          <div className="absolute top-0 right-0 h-full w-[86%] max-w-sm bg-white shadow-xl border-l border-slate-200">
-            <div className="h-14 px-4 flex items-center justify-between border-b border-slate-200">
-              <div className="font-semibold">Menú</div>
+          <div className="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-white shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+              <div className="text-base font-extrabold text-slate-900">Menú</div>
               <button
-                className="h-10 w-10 rounded-xl border border-slate-200 hover:bg-slate-50"
+                type="button"
+                className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:bg-slate-50"
                 onClick={() => setOpen(false)}
-                aria-label="Cerrar menú"
+                aria-label="Cerrar"
               >
                 ✕
               </button>
             </div>
 
-            <div className="p-4 flex flex-col gap-2">
-              {nav.map((item) => (
+            <div className="p-4">
+              <div className="grid gap-2">
+                {NAV.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className={[
+                      "rounded-2xl border px-4 py-3 text-sm font-semibold transition",
+                      pathname === item.href
+                        ? "border-slate-900 bg-slate-900 text-white"
+                        : "border-slate-200 bg-white text-slate-900 hover:bg-slate-50",
+                    ].join(" ")}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div className="text-xs font-bold text-slate-900">
+                  Ubicación
+                </div>
+                <div className="mt-1 text-sm text-slate-700">
+                  Ayuntamiento de Jamapa
+                  <br />
+                  Cuartel 2, Jamapa, Veracruz
+                </div>
                 <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="px-4 py-3 rounded-xl border border-slate-200 text-slate-800 hover:bg-slate-50"
+                  className="mt-3 inline-flex w-full items-center justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+                  href="https://www.google.com/maps/search/?api=1&query=Ayuntamiento+de+Jamapa"
+                  target="_blank"
                 >
-                  {item.label}
+                  Abrir en Google Maps
                 </Link>
-              ))}
+              </div>
             </div>
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
