@@ -16,18 +16,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className="min-h-screen flex flex-col bg-white text-slate-900 antialiased">
+      <body className="min-h-screen flex flex-col bg-white text-slate-900 pt-16">
+        {/* Header fijo */}
         <SiteHeader />
 
-        {/* Aviso institucional global */}
-        <div className="bg-amber-50 border-b border-amber-200">
-          <div className="container-page py-2 text-sm text-amber-900">
-            Este sitio se encuentra en proceso de actualización.
-          </div>
-        </div>
-
+        {/* Contenido */}
         <main className="flex-1">{children}</main>
 
+        {/* Footer */}
         <SiteFooter />
       </body>
     </html>

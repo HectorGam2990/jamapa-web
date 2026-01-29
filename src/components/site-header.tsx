@@ -15,136 +15,97 @@ const nav = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
-  // Cierra con ESC
   useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
-
-  // Bloquea scroll cuando el menú está abierto (mejor UX en móvil)
-  useEffect(() => {
-    if (open) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
+    // Bloquea scroll cuando el menú está abierto
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-[60] border-b border-slate-200 bg-white/95 backdrop-blur">
-      {/* Barra superior */}
-      <div className="bg-[#6b1135] text-white">
-        <div className="container-page flex items-center justify-between py-2 text-xs">
-          <span className="font-semibold tracking-wide">Sitio oficial</span>
-          <span className="hidden md:block opacity-90">
-            Juntos por la Transformación
-          </span>
-          <Link
-            className="font-semibold underline-offset-4 hover:underline"
-            href="/contacto"
-            onClick={() => setOpen(false)}
-          >
-            Atención ciudadana
-          </Link>
+    <header className="fixed top-0 inset-x-0 z-[100] bg-white/95 backdrop-blur border-b border-slate-200">
+      {/* Barrita arriba (vino) */}
+      <div className="bg-[#6B1028] text-white text-xs">
+        <div className="mx-auto max-w-6xl px-4 py-2 flex items-center justify-between">
+          <span>Sitio oficial</span>
+          <span className="hidden sm:inline">Atención ciudadana</span>
         </div>
       </div>
 
-      {/* Header principal */}
-      <div className="container-page py-4">
-        <div className="flex items-center justify-between gap-4">
-          {/* Brand */}
-          <Link
-            href="/"
-            className="flex items-center gap-3"
-            onClick={() => setOpen(false)}
-          >
-            <img
-              src="/logo-jamapa.jpg"
-              alt="Ayuntamiento de Jamapa"
-              className="h-10 w-auto"
-            />
-            <div className="leading-tight">
-              <p className="text-sm font-extrabold">Ayuntamiento de Jamapa</p>
-              <p className="text-xs text-slate-600">Veracruz</p>
+      <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between gap-3">
+        {/* Marca / Logo */}
+        <Link href="/" className="flex items-center gap-3 min-w-0">
+          {/* Si ya tienes el logo como JPG, cámbialo aquí: /logo-jamapa.jpg */}
+          <img
+            src="/logo-jamapa.jpg"
+            alt="Ayuntamiento de Jamapa"
+            className="h-9 w-auto"
+          />
+          <div className="leading-tight min-w-0">
+            <div className="font-semibold text-slate-900 truncate">
+              Ayuntamiento de Jamapa
             </div>
-          </Link>
+            <div className="text-xs text-slate-500">Veracruz</div>
+          </div>
+        </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-2">
-            {nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+        {/* Nav escritorio */}
+        <nav className="hidden md:flex items-center gap-2">
+          {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-100"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
 
-          {/* Mobile button */}
-          <button
-            className="lg:hidden inline-flex items-center justify-center rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold hover:bg-slate-50"
-            aria-label="Abrir menú"
-            aria-expanded={open}
-            onClick={() => setOpen(true)}
-          >
-            ☰
-          </button>
-        </div>
+        {/* Botón menú móvil */}
+        <button
+          className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-xl border border-slate-200 hover:bg-slate-50"
+          onClick={() => setOpen(true)}
+          aria-label="Abrir menú"
+        >
+          ☰
+        </button>
       </div>
 
-      {/* MOBILE OVERLAY + DRAWER (superior a TODO) */}
+      {/* Overlay + panel móvil */}
       {open && (
-        <div className="fixed inset-0 z-[9999] lg:hidden">
-          {/* Overlay sólido para que NO se vea el hero “atravesado” */}
-          <button
-            className="absolute inset-0 bg-black/60"
-            aria-label="Cerrar menú"
+        <div className="md:hidden fixed inset-0 z-[110]">
+          {/* Overlay oscuro (esto evita el “transparente” sobre el hero) */}
+          <div
+            className="absolute inset-0 bg-black/50"
             onClick={() => setOpen(false)}
           />
 
-          {/* Drawer */}
-          <div className="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-white shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-200 p-4">
-              <p className="text-sm font-extrabold">Menú</p>
+          {/* Panel */}
+          <div className="absolute top-0 right-0 h-full w-[86%] max-w-sm bg-white shadow-xl border-l border-slate-200">
+            <div className="h-14 px-4 flex items-center justify-between border-b border-slate-200">
+              <div className="font-semibold">Menú</div>
               <button
-                className="rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold hover:bg-slate-50"
-                aria-label="Cerrar"
+                className="h-10 w-10 rounded-xl border border-slate-200 hover:bg-slate-50"
                 onClick={() => setOpen(false)}
+                aria-label="Cerrar menú"
               >
                 ✕
               </button>
             </div>
 
-            <div className="p-4">
-              <div className="grid gap-2">
-                {nav.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-
-              <div className="mt-6 rounded-2xl bg-slate-50 p-4">
-                <p className="text-xs font-bold text-slate-700">
-                  Atención ciudadana
-                </p>
-                <p className="mt-1 text-xs text-slate-600">
-                  Cuartel 2, Jamapa, Veracruz
-                </p>
-                <p className="mt-1 text-xs text-slate-600">
-                  Lun–Vie 10:00–17:30
-                </p>
-              </div>
+            <div className="p-4 flex flex-col gap-2">
+              {nav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="px-4 py-3 rounded-xl border border-slate-200 text-slate-800 hover:bg-slate-50"
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
