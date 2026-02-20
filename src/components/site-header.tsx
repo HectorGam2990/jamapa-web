@@ -63,8 +63,8 @@ export default function SiteHeader() {
         <div className="h-4 bg-[#5b0f2e] text-white">
           <div className="mx-auto flex h-4 max-w-6xl items-center justify-between px-4 text-[10px] tracking-wide">
             <span>Sitio oficial</span>
-            <span className="hidden sm:inline">Juntos por la Transformación</span>
-            <span>Atención ciudadana</span>
+            <span className="hidden sm:inline">{"Juntos por la Transformaci\u00f3n"}</span>
+            <span>{"Atenci\u00f3n ciudadana"}</span>
           </div>
         </div>
 
