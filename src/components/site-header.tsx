@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -9,7 +9,6 @@ const NAV = [
   { href: "/", label: "Inicio" },
   { href: "/gobierno", label: "Gobierno" },
   { href: "/municipio", label: "Municipio" },
-  { href: "/noticias", label: "Noticias" },
   { href: "/transparencia", label: "Transparencia" },
   { href: "/contacto", label: "Contacto" },
 ];
@@ -45,12 +44,7 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  // Cierra el menú al cambiar de ruta
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  // Bloquea el scroll del body cuando el menú está abierto
+  // Bloquea el scroll del body cuando el menÃº estÃ¡ abierto
   useEffect(() => {
     if (!open) {
       document.body.style.overflow = "";
@@ -69,8 +63,8 @@ export default function SiteHeader() {
         <div className="h-4 bg-[#5b0f2e] text-white">
           <div className="mx-auto flex h-4 max-w-6xl items-center justify-between px-4 text-[10px] tracking-wide">
             <span>Sitio oficial</span>
-            <span className="hidden sm:inline">Juntos por la Transformación</span>
-            <span>Atención ciudadana</span>
+            <span className="hidden sm:inline">Juntos por la TransformaciÃ³n</span>
+            <span>AtenciÃ³n ciudadana</span>
           </div>
         </div>
 
@@ -114,20 +108,20 @@ export default function SiteHeader() {
               type="button"
               className="md:hidden inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
               onClick={() => setOpen(true)}
-              aria-label="Abrir menú"
+              aria-label="Abrir menÃº"
             >
-              ☰
+              â˜°
             </button>
           </div>
         </header>
       </div>
 
-      {/* Overlay + Drawer móvil (SUPER por encima, NO transparente feo) */}
+      {/* Overlay + Drawer mÃ³vil (SUPER por encima, NO transparente feo) */}
       {open && (
         <div className="fixed inset-0 z-[80]">
           {/* Fondo oscuro */}
           <button
-            aria-label="Cerrar menú"
+            aria-label="Cerrar menÃº"
             className="absolute inset-0 bg-black/55"
             onClick={() => setOpen(false)}
             type="button"
@@ -136,14 +130,14 @@ export default function SiteHeader() {
           {/* Panel */}
           <div className="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-white shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
-              <div className="text-base font-extrabold text-slate-900">Menú</div>
+              <div className="text-base font-extrabold text-slate-900">MenÃº</div>
               <button
                 type="button"
                 className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:bg-slate-50"
                 onClick={() => setOpen(false)}
                 aria-label="Cerrar"
               >
-                ✕
+                âœ•
               </button>
             </div>
 
@@ -168,7 +162,7 @@ export default function SiteHeader() {
 
               <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4">
                 <div className="text-xs font-bold text-slate-900">
-                  Ubicación
+                  UbicaciÃ³n
                 </div>
                 <div className="mt-1 text-sm text-slate-700">
                   Ayuntamiento de Jamapa
@@ -190,3 +184,4 @@ export default function SiteHeader() {
     </>
   );
 }
+

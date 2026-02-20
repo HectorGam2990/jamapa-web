@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 const quickLinks = [
   {
@@ -8,17 +8,12 @@ const quickLinks = [
   },
   {
     title: "Municipio",
-    text: "Historia, ubicación y comunidades.",
+    text: "Historia, ubicacion y comunidades.",
     href: "/municipio",
   },
   {
-    title: "Noticias",
-    text: "Avisos y comunicados oficiales.",
-    href: "/noticias",
-  },
-  {
     title: "Transparencia",
-    text: "Acceso a información pública.",
+    text: "Acceso a informacion publica.",
     href: "/transparencia",
   },
 ];
@@ -26,7 +21,6 @@ const quickLinks = [
 export default function Home() {
   return (
     <>
-      {/* HERO con foto */}
       <section className="relative overflow-hidden bg-slate-900">
         <div className="absolute inset-0">
           <img
@@ -48,7 +42,7 @@ export default function Home() {
           </h1>
 
           <p className="mt-4 max-w-3xl text-white/85">
-            Gobierno municipal comprometido con el desarrollo, la transparencia y el bienestar de la ciudadanía.
+            Gobierno municipal comprometido con el desarrollo, la transparencia y el bienestar de la ciudadania.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -58,22 +52,13 @@ export default function Home() {
             <Link href="/transparencia" className="btn-secondary">
               Transparencia
             </Link>
-            <Link href="/noticias" className="btn-secondary">
-              Ver noticias
-            </Link>
           </div>
 
-          {/* Tarjetas pro */}
           <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {/* Ubicación */}
             <div className="rounded-2xl bg-white/10 p-5 ring-1 ring-white/15 backdrop-blur">
-              <p className="text-sm font-semibold text-white">Ubicación</p>
-              <p className="mt-2 text-sm text-white/80">
-                Ayuntamiento de Jamapa
-              </p>
-              <p className="mt-1 text-sm text-white/70">
-                Cuartel 2, Jamapa, Veracruz
-              </p>
+              <p className="text-sm font-semibold text-white">Ubicacion</p>
+              <p className="mt-2 text-sm text-white/80">Ayuntamiento de Jamapa</p>
+              <p className="mt-1 text-sm text-white/70">Cuartel 2, Jamapa, Veracruz</p>
 
               <div className="mt-4 flex gap-2">
                 <a
@@ -87,16 +72,15 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Horarios */}
             <div className="rounded-2xl bg-white/10 p-5 ring-1 ring-white/15 backdrop-blur">
               <p className="text-sm font-semibold text-white">Horarios</p>
               <ul className="mt-3 space-y-2 text-sm text-white/80">
                 <li className="flex items-center justify-between">
                   <span>Lunes a Viernes</span>
-                  <span className="font-semibold text-white">10:00 – 17:30</span>
+                  <span className="font-semibold text-white">10:00 - 17:30</span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span>Sábado</span>
+                  <span>Sabado</span>
                   <span className="font-semibold text-white">Cerrado</span>
                 </li>
                 <li className="flex items-center justify-between">
@@ -109,7 +93,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Mapa embed */}
             <div className="rounded-2xl bg-white/10 p-2 ring-1 ring-white/15 backdrop-blur">
               <div className="overflow-hidden rounded-xl">
                 <iframe
@@ -125,43 +108,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Accesos rápidos */}
       <section className="bg-slate-50 py-12">
         <div className="container-page">
-          <h2 className="section-title">Información institucional</h2>
+          <h2 className="section-title">Informacion institucional</h2>
           <p className="section-subtitle">
-            Accesos directos a las principales áreas del municipio.
+            Accesos directos a las principales areas del municipio.
           </p>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {quickLinks.map((item) => (
               <Link key={item.href} href={item.href} className="card">
                 <p className="card-title">{item.title}</p>
                 <p className="card-text">{item.text}</p>
                 <p className="mt-4 text-sm font-semibold text-slate-900">
-                  Ver información oficial →
+                  Ver informacion oficial {"->"}
                 </p>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Banda de avisos (toque pro con color) */}
-      <section className="py-10">
-        <div className="container-page">
-          <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
-            <p className="text-sm font-extrabold text-amber-900">
-              Avisos oficiales
-            </p>
-            <p className="mt-2 text-sm text-amber-900/80">
-              Consulta comunicados y noticias recientes del Ayuntamiento.
-            </p>
-            <div className="mt-4">
-              <Link href="/noticias" className="btn-dark">
-                Ir a Noticias
-              </Link>
-            </div>
           </div>
         </div>
       </section>

@@ -27,9 +27,9 @@ const governmentProfiles: GovernmentProfile[] = [
     ],
   },
   {
-    area: "Jefatura de Comercio",
+    area: "Direccion de Comercio",
     titular: "Luis Fernando Hernandez Rios",
-    cargo: "Jefe de Comercio",
+    cargo: "Director de Comercio",
     resumen:
       "Licenciado en Psicologia, egresado de la Universidad Veracruzana, con especializacion en el area organizacional. Cuenta con trayectoria en coordinacion y atencion operativa de actividades comerciales del municipio.",
     correo: "comercio@jamapa.gob.mx",
