@@ -44,7 +44,7 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  // Bloquea el scroll del body cuando el menÃº estÃ¡ abierto
+  // Bloquea el scroll del body cuando el menu esta abierto
   useEffect(() => {
     if (!open) {
       document.body.style.overflow = "";
@@ -108,20 +108,20 @@ export default function SiteHeader() {
               type="button"
               className="md:hidden inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
               onClick={() => setOpen(true)}
-              aria-label="Abrir menÃº"
+              aria-label={"Abrir men\u00fa"}
             >
-              â˜°
+              {"\u2630"}
             </button>
           </div>
         </header>
       </div>
 
-      {/* Overlay + Drawer mÃ³vil (SUPER por encima, NO transparente feo) */}
+      {/* Overlay + Drawer movil (SUPER por encima, NO transparente feo) */}
       {open && (
         <div className="fixed inset-0 z-[80]">
           {/* Fondo oscuro */}
           <button
-            aria-label="Cerrar menÃº"
+            aria-label={"Cerrar men\u00fa"}
             className="absolute inset-0 bg-black/55"
             onClick={() => setOpen(false)}
             type="button"
@@ -130,14 +130,16 @@ export default function SiteHeader() {
           {/* Panel */}
           <div className="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-white shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
-              <div className="text-base font-extrabold text-slate-900">MenÃº</div>
+              <div className="text-base font-extrabold text-slate-900">
+                {"Men\u00fa"}
+              </div>
               <button
                 type="button"
                 className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:bg-slate-50"
                 onClick={() => setOpen(false)}
                 aria-label="Cerrar"
               >
-                âœ•
+                {"\u2715"}
               </button>
             </div>
 
@@ -162,7 +164,7 @@ export default function SiteHeader() {
 
               <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4">
                 <div className="text-xs font-bold text-slate-900">
-                  UbicaciÃ³n
+                  {"Ubicaci\u00f3n"}
                 </div>
                 <div className="mt-1 text-sm text-slate-700">
                   Ayuntamiento de Jamapa
